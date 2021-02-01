@@ -1,11 +1,21 @@
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 import logo from "./logo.svg"
 import "./App.css"
+import axios from "axios"
 
 class LambdaDemo extends Component {
   constructor(props) {
     super(props)
     this.state = { loading: false, msg: null }
+    const [count, setCount] = useState();
+  }
+
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`)
+      .then(res => {
+        const data = res.data;
+        this.setCount({ data });
+      })
   }
 
   handleClick = api => e => {
@@ -23,6 +33,7 @@ class LambdaDemo extends Component {
     return (
       <p>
         <p>Joker Child</p>
+        <p>{count.data}</p>
         <button onClick={this.handleClick("hello")}>{loading ? "Loading..." : "Call Lambda"}</button>
         <button onClick={this.handleClick("async-dadjoke")}>{loading ? "Loading..." : "Call Async Lambda"}</button>
         <br />
