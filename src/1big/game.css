@@ -11,7 +11,20 @@
 
 }
 
-.mainCard {
-    border-style: dotted;
-    border-radius: 20%;
+.purplButt {
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.mainDiv {
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    font-size:x-large;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 15px;
+    border-color: #7749f8;
 }
