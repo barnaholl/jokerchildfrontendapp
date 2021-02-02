@@ -8,4 +8,10 @@
     height: 800px; 
     padding-left: 5%;
     padding-right: 5%;
+
+}
+
+.mainCard {
+    border-style: dotted;
+    border-radius: 20%;
 }

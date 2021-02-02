@@ -16,8 +16,8 @@ const Game = () => {
 
 
     return (
-        <div className='centralizeMainCard' >
-            <Card >
+        <div className='centralizeMainCard'>
+            <Card style={{ borderColor: '#7749f8', borderWidth: '4px', borderRadius: '15px' }}>
                 <Card.Body>
                     <Card.Title>Card Title</Card.Title>
                     <Card.Text>
