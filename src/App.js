@@ -1,16 +1,35 @@
-import React, { Component, useState, useEffect } from "react"
-import logo from "./logo.svg"
-import "./App.css"
-import axios from "axios"
-import Game from "./1medium/Game"
+import React, { useEffect, useState, useContext } from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import axios from "axios";
+import {Button, Card} from 'react-bootstrap';
+import "./game.css"
+import WelcomePage from "./1big/WelcomePage"
+import GetId from "./1big/GetId"
 
-function App() {
+const App = () => {
+    const [test, setTest] = useState();
+
+    useEffect(() =>
+        axios.get('https://joker-child-spring.herokuapp.com/')
+            .then(res => {
+                alert(res.data)
+            })
+    );
 
 
 
     return (
-      <Game />
+        <Router>
+          <div className='centralizeMainCard'>
+            <div className="mainDiv">
+                <Route exact path='/' component={WelcomePage}></Route>
+                <Route exact path='/getid' component ={GetId}></Route>
+            </div>
+          </div>
+        </Router>
+
     )
-}
+};
 
 export default App;
+
