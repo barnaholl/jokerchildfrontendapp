@@ -3,7 +3,10 @@
 .test {
     background-color: #f7bdbd;
     border-radius: 5px;
-    padding: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 1%;
+
     text-align: center;
     font-family: 'Amatic SC', cursive;
     font-weight: 900;

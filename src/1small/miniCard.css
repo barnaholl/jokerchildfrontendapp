@@ -1,5 +1,5 @@
 
-.miniC {
+.miniCLeft {
     text-align: center;
     font-family: 'Amatic SC', cursive;
     font-weight: 900;
@@ -13,4 +13,28 @@
     margin-bottom: -4px;
     margin-left: -4px;
     margin-right: -4px;
+    display: inline-block;
+    float: left;
+
+
+}
+
+.miniCRight {
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    font-weight: 900;
+    font-size:x-large;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 15px;
+    border-color: #7749f8;
+    width: fit-content;
+    padding: 2%;
+    margin-bottom: -4px;
+    margin-left: -4px;
+    margin-right: -4px;
+    position: relative;
+    float: right;
+    display: inline-block;
+
 }

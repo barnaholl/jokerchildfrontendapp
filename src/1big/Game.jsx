@@ -24,7 +24,9 @@ const Game = () => {
                     <div className="purplButt">
                     <PurpleButton text="Belépek!" />
                     </div>
-                    <MiniCard />
+                    <MiniCard text="Diákként regisztrálok!" align="left" />
+                    <MiniCard text="Tanárként regisztrálok!" align="right" />
+
             </div>
         </div>
 
