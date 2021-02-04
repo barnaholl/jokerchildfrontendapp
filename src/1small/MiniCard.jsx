@@ -10,6 +10,7 @@ export default function MiniCard(props) {
     return (
         <div className={rightOrLeft}>
             <p>{props.text}</p>
+            <p>{props.text2}</p>
         </div>
     )
 }

@@ -10,7 +10,7 @@ export default function GetId() {
     return (
         <div>
             <PinkInfo text="Kérlek add meg a kártyán található kódot amivel játszani szeretnél." />
-            <input type="text" name="name"  className="input1"/>
+            <input type="text" name="name"  className={"input1", "heighttext"}/>
             <PurpleButton text="Mutasd a kártyát!" />
             <div className="pics">
                 <img src={urhajos} style={{height: "320px", paddingRight:"1%"}}/>
