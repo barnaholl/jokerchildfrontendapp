@@ -10,11 +10,12 @@ export default function GetId() {
     return (
         <div>
             <PinkInfo text="Kérlek add meg a kártyán található kódot amivel játszani szeretnél." />
-            <input type="text" name="name"  className={"input1", "heighttext"}/>
+            <div className="input1"><input type="text" name="name"  className={"heighttext"}/></div>
+            
             <PurpleButton text="Mutasd a kártyát!" />
             <div className="pics">
-                <img src={urhajos} style={{height: "310px", paddingRight:"1%"}}/>
-                <img src={urhajoshata} style={{height: "310px"}}/>
+                <img src={urhajos} className="responsiveGetId" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                <img src={urhajoshata} className="responsiveGetId" style={{minWidth:"250px"}}/>
             </div>
             
         </div>
