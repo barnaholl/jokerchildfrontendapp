@@ -12,14 +12,12 @@ import Answer from "./1big/Answer"
 const App = () => {
     const [test, setTest] = useState();
 
-    useEffect(() =>
+    /*useEffect(() =>
         axios.get('https://joker-child-spring.herokuapp.com/')
             .then(res => {
                 alert(res.data)
             })
-    );
-
-
+    );*/
 
     return (
         <Router>
