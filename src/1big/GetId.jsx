@@ -13,8 +13,8 @@ export default function GetId() {
             <input type="text" name="name"  className={"input1", "heighttext"}/>
             <PurpleButton text="Mutasd a kártyát!" />
             <div className="pics">
-                <img src={urhajos} style={{height: "320px", paddingRight:"1%"}}/>
-                <img src={urhajoshata} style={{height: "320px"}}/>
+                <img src={urhajos} style={{height: "310px", paddingRight:"1%"}}/>
+                <img src={urhajoshata} style={{height: "310px"}}/>
             </div>
             
         </div>
