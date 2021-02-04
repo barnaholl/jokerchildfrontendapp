@@ -23,16 +23,14 @@ export default function GetId() {
 
     const submitCode = () => {
         getCardByIdentificationId(identificationId)
-            .then(data=>data.data=="" ? window.alert(context.card) : onValidIdentificationId(data.data));
+            .then(data=>data.data=="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
     }
 
     return (
             <div>
-                <form>
-                    <PinkInfo text="Kérlek add meg a kártyán található kódot amivel játszani szeretnél." />
-                    <input type="text" name="name"  className="input1" onChange={event=>setIdentificationId(event.target.value)}/>
-                    <PurpleButton text="Mutasd a kártyát!" onClick={submitCode}/>
-                </form>
+                <PinkInfo text="Kérlek add meg a kártyán található kódot amivel játszani szeretnél." />
+                <input type="text" name="name"  className="input1" onChange={event=>setIdentificationId(event.target.value)}/>
+                <PurpleButton text="Mutasd a kártyát!" onClick={submitCode}/>
                 <div className="pics">
                     <img src={urhajos} style={{height: "320px", paddingRight:"1%"}}/>
                     <img src={urhajoshata} style={{height: "320px"}}/>
