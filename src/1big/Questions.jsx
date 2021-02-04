@@ -22,7 +22,7 @@ export default function Questions() {
             <PurpleButton text="Következő kártya!" />
             <div>
             <MiniCard text="Leírás" align="left" className="oneline" />
-            <MiniCard text="12/2 XP-t gyűjtöttél" align="right" className="oneline"/>
+            <MiniCard text="12/2 XP-t " text2="gyűjtöttél" align="right" className="oneline"/>
             </div>
 
 

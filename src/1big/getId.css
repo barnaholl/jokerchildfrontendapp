@@ -1,12 +1,22 @@
 .input1 {
-    margin-bottom: 5%;
+    margin-bottom: 3%;
+
 }
 
 .pics {
     margin-top: 15px;
-    overflow: hidden;
-    white-space: nowrap;
+    
 }
+
+.responsive {
+    max-width: 50%;
+    max-height: 300px;
+  }
+
+  .responsiveGetId {
+    max-width: 50%;
+    max-height: 260px;
+  }
 
 .heighttext{
     height:2.5rem;
