@@ -7,7 +7,10 @@ import urhajoshata from "../pics/urhajoshata.png"
 import felho from "../pics/felho.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
+
 export default function Questions() {
+
+
     return (
         <div>
             <div className='test'>

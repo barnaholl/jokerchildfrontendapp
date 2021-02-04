@@ -7,27 +7,23 @@ import WelcomePage from "./1big/WelcomePage"
 import GetId from "./1big/GetId"
 import Questions from "./1big/Questions"
 import Answer from "./1big/Answer"
+import { CardContext } from "./context/CardContext";
 
 
 const App = () => {
-    const [test, setTest] = useState();
 
-    /*useEffect(() =>
-        axios.get('https://joker-child-spring.herokuapp.com/')
-            .then(res => {
-                alert(res.data)
-            })
-    );*/
+    const [card, setCard] = useState("null");
 
     return (
         <Router>
           <div className='centralizeMainCard'>
             <div className="mainDiv">
                 <Route exact path='/' component={WelcomePage}></Route>
-                <Route exact path='/getid' component ={GetId}></Route>
-                <Route exact path='/questions' component ={Questions}></Route>
-                <Route exact path='/answer' component ={Answer}></Route>
-
+                <CardContext.Provider value={{card,setCard}}>
+                    <Route exact path='/getid' component ={GetId}></Route>
+                    <Route exact path='/questions' component ={Questions}></Route>
+                    <Route exact path='/answer' component ={Answer}></Route>
+                </CardContext.Provider>
             </div>
           </div>
         </Router>
