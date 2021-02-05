@@ -5,7 +5,7 @@ import "./getId.css"
 import urhajos from "../pics/urhajos.png"
 import urhajoshata from "../pics/urhajoshata.png"
 import getCardByIdentificationId from "../context/ApiCalls"
-import { CardContext } from '../context/CardContext'
+import { CardContext} from '../context/CardContext'
 import { useHistory } from 'react-router-dom'
 
 

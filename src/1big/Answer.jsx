@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React,{useContext,useState,useEffect} from 'react'
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
@@ -8,8 +8,26 @@ import felho from "../pics/felho.png"
 import nap from "../pics/nap.png"
 import "./getId.css"
 import "./questions.css"
+import { CardContext,AnswerIdContext} from '../context/CardContext'
+import { useHistory } from 'react-router-dom'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+
+const context=useContext(CardContext);
+const answerIdContext=useContext(AnswerIdContext)
+const history=useHistory();
+let words=[];
+let goodWords=[];
+
+useEffect(()=>{
+    let allWords=context.card.exercises[answerIdContext.answerId].answer.split(";");
+    goodWords=allWords[0].split(",");
+    let badWords=allWords[1].split(",");
+    words= goodWords.concat(badWords);
+    console.log(words);
+    console.log(goodWords);
+},[])
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -158,40 +176,8 @@ export default function DndTest() {
                     )}
                 </Droppable>
             </div>
-            <div className="onelineDnd">
-                <Droppable droppableId="droppable2">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}>
-                            {state.selected.map((item, index) => (
-                                <Draggable
-                                    key={item.id}
-                                    draggableId={item.id}
-                                    index={index}>
-                                    {(provided, snapshot) => (
-                                        <div
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                            style={getItemStyle(
-                                                snapshot.isDragging,
-                                                provided.draggableProps.style
-                                            )}>
-                                            {item.content}
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </div>
 
         </DragDropContext>
     );
 }
-
-
 
