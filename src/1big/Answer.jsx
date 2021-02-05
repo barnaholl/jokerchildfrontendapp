@@ -1,4 +1,4 @@
-import React,{useContext,useState,useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
@@ -8,88 +8,88 @@ import felho from "../pics/felho.png"
 import nap from "../pics/nap.png"
 import "./getId.css"
 import "./questions.css"
-import { CardContext,AnswerIdContext} from '../context/CardContext'
+import { CardContext, AnswerIdContext } from '../context/CardContext'
 import { useHistory } from 'react-router-dom'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
-const context=useContext(CardContext);
-const answerIdContext=useContext(AnswerIdContext)
-const history=useHistory();
-let words=[];
-let goodWords=[];
 
-useEffect(()=>{
-    let allWords=context.card.exercises[answerIdContext.answerId].answer.split(";");
-    goodWords=allWords[0].split(",");
-    let badWords=allWords[1].split(",");
-    words= goodWords.concat(badWords);
-    console.log(words);
-    console.log(goodWords);
-},[])
 
-// fake data generator
-const getItems = (count, offset = 0) =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k + offset}`,
-        content: `item ${k + offset}`
-    }));
 
-// a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-};
-
-/**
- * Moves an item from one list to another list.
- */
-const move = (source, destination, droppableSource, droppableDestination) => {
-    const sourceClone = Array.from(source);
-    const destClone = Array.from(destination);
-    const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-    destClone.splice(droppableDestination.index, 0, removed);
-
-    const result = {};
-    result[droppableSource.droppableId] = sourceClone;
-    result[droppableDestination.droppableId] = destClone;
-
-    return result;
-};
-
-const grid = 8;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-    // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
-    padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
-
-    // change background colour if dragging
-    background: isDragging ? 'lightgreen' : 'grey',
-
-    // styles we need to apply on draggables
-    ...draggableStyle
-});
-
-const getListStyle = isDraggingOver => ({
-    padding: grid,
-    width: 250
-});
 
 
 
 export default function DndTest() {
 
 
+
+    // a little function to help us with reordering the result
+    const reorder = (list, startIndex, endIndex) => {
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    };
+
+    /**
+     * Moves an item from one list to another list.
+     */
+    const move = (source, destination, droppableSource, droppableDestination) => {
+        const sourceClone = Array.from(source);
+        const destClone = Array.from(destination);
+        const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+        destClone.splice(droppableDestination.index, 0, removed);
+
+        const result = {};
+        result[droppableSource.droppableId] = sourceClone;
+        result[droppableDestination.droppableId] = destClone;
+
+        return result;
+    };
+
+    const grid = 8;
+
+    const getItemStyle = (isDragging, draggableStyle) => ({
+        // some basic styles to make the items look a bit nicer
+        userSelect: 'none',
+        padding: grid * 2,
+        margin: `0 0 ${grid}px 0`,
+
+        // change background colour if dragging
+        background: isDragging ? 'lightgreen' : 'grey',
+
+        // styles we need to apply on draggables
+        ...draggableStyle
+    });
+
+    const getListStyle = isDraggingOver => ({
+        padding: grid,
+        width: 250
+    });
+
+    const context = useContext(CardContext);
+    const answerIdContext = useContext(AnswerIdContext)
+    const history = useHistory();
+    const [words, setWords] = useState([])
+    let goodWords = [];
+
+    useEffect(() => {
+        let allWords = context.card.exercises[answerIdContext.answerId].answer.split(";");
+        goodWords = allWords[0].split(",");
+        let badWords = allWords[1].split(",");
+        setWords(goodWords.concat(badWords));
+    }, [])
+
+    
+
     const [state, setState] = useState({
-        items: getItems(5),
-        selected: getItems(5, 10)
+        items: Array.from(words.map((word, index) => ({
+            id: index,
+            content: word
+        }))),
     })
 
     /**
@@ -145,38 +145,62 @@ export default function DndTest() {
     // But in this example everything is just done in one place for simplicity
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <PinkInfo text="Ide kell majd beírni a kérdéseket adatbázisból." />
-            <div className="onelineDnd">
-                <Droppable droppableId="droppable">
-                    {(provided, snapshot) => (
-                        <div
-                            ref={provided.innerRef}
-                            style={getListStyle(snapshot.isDraggingOver)}>
-                            {state.items.map((item, index) => (
-                                <Draggable
-                                    key={item.id}
-                                    draggableId={item.id}
-                                    index={index}>
-                                    {(provided, snapshot) => (
-                                        <div
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                            style={getItemStyle(
-                                                snapshot.isDragging,
-                                                provided.draggableProps.style
-                                            )}>
-                                            {item.content}
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </div>
-
+            <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                    <div
+                        ref={provided.innerRef}
+                        style={getListStyle(snapshot.isDraggingOver)}>
+                        {words.map((item, index) => (
+                            <Draggable
+                                key={index}
+                                draggableId={index}
+                                index={index + 40}>
+                                {(provided, snapshot) => (
+                                    <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={getItemStyle(
+                                            snapshot.isDragging,
+                                            provided.draggableProps.style
+                                        )}>
+                                        {item}
+                                    </div>
+                                )}
+                            </Draggable>
+                        ))}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
+            <Droppable droppableId="droppable2">
+                {(provided, snapshot) => (
+                    <div
+                        ref={provided.innerRef}
+                        style={getListStyle(snapshot.isDraggingOver)}>
+                        {words.map((item, index) => (
+                            <Draggable
+                                key={index}
+                                draggableId={index}
+                                index={index + 40}>
+                                {(provided, snapshot) => (
+                                    <div
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                        style={getItemStyle(
+                                            snapshot.isDragging,
+                                            provided.draggableProps.style
+                                        )}>
+                                        {item}
+                                    </div>
+                                )}
+                            </Draggable>
+                        ))}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
         </DragDropContext>
     );
 }
