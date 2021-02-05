@@ -20,9 +20,12 @@ export default function Questions() {
     
     
     const answerQuestion = (id) =>{
-        console.log(id);
         answerIdContext.setAnswerId(id);
         history.push("/Answer");
+    }
+
+    const getNewCard=()=>{
+        history.push("/GetId");
     }
 
 
@@ -44,7 +47,10 @@ export default function Questions() {
                             
                         </ol>
                     </div>
-                    <PurpleButton text="Következő kártya!" />
+                    <div className="pics">
+                        <img src={urhajos} className="responsiveGetId" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                    </div>
+                    <PurpleButton onClick={getNewCard} text="Új kártyát kérek!" />
                     <div>
                         <MiniCard text="Leírás" align="left" className="oneline" />
                         <MiniCard text="12/2 XP-t gyűjtöttél" align="right" className="oneline"/>
