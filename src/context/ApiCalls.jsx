@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL="http://localhost:8080"
+const BASE_URL="http://localhost:8080"; //"https://joker-child-spring.herokuapp.com"; //
 
 const getCardByIdentificationId = async (identificationId) =>{
     return await axios.get(BASE_URL+"/card/byIdentificationId?identificationId="+identificationId);
