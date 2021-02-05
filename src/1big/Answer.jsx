@@ -14,10 +14,9 @@ export default function Questions() {
     return (
         <div>
             <PinkInfo text="Ide kell majd beírni a kérdéseket adatbázisból." />
-            <div className="pics" >
-                <img src={felho} style={{maxWidth: "40%"}}/>
-                <p></p>
-                <img src={nap} style={{maxWidth: "40%"}}/>
+            <div className="pics">
+                <img src={felho} className="responsive" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                <img src={nap} className="responsive" style={{minWidth:"250px"}}/>
             </div>
             <p></p>
             <PurpleButton text="Kész!" />

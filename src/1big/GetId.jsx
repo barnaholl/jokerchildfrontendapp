@@ -29,12 +29,12 @@ export default function GetId() {
     return (
             <div>
                 <PinkInfo text="Kérlek add meg a kártyán található kódot amivel játszani szeretnél." />
-                <input type="text" name="name"  className="input1" onChange={event=>setIdentificationId(event.target.value)}/>
+                <div className="input1"><input type="text" name="name"  className="input1" onChange={event=>setIdentificationId(event.target.value)}/></div>
                 <PurpleButton text="Mutasd a kártyát!" onClick={submitCode}/>
-                <div className="pics">
-                    <img src={urhajos} style={{height: "320px", paddingRight:"1%"}}/>
-                    <img src={urhajoshata} style={{height: "320px"}}/>
-                </div>            
+            <div className="pics">
+                <img src={urhajos} className="responsiveGetId" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                <img src={urhajoshata} className="responsiveGetId" style={{minWidth:"250px"}}/>
+            </div>          
             </div>      
     )
 }

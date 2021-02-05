@@ -15,8 +15,8 @@ export default function WelcomePage() {
             <div className="purplButt">
                 <PurpleButton text="Belépek!" />
             </div>
-                <MiniCard text="Diákként regisztrálok!" align="left" />
-                <MiniCard text="Tanárként regisztrálok!" align="right" />
+                <MiniCard text="Diákként " text2="regisztrálok!" align="left" />
+                <MiniCard text="Tanárként " text2="regisztrálok!" align="right" />
         </div>
     )
 }
