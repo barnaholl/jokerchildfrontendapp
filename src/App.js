@@ -23,6 +23,7 @@ const App = () => {
                     <Route exact path='/getid' component ={GetId}></Route>
                     <Route exact path='/questions' component ={Questions}></Route>
                     <Route exact path='/answer' component ={Answer}></Route>
+
                 </CardContext.Provider>
             </div>
           </div>
