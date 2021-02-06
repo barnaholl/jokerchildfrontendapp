@@ -21,9 +21,9 @@ export default function Questions() {
     const [userId,setUserId]=useState(0); 
 
     
-    const answerQuestion = (id) =>{
+    const answerQuestion = (questionId) =>{
         //answerIdContext.setAnswerId(id);
-        history.push("/Answer");
+        history.push(`/Answer/${questionId}`);
     }
 
     const getNewCard=()=>{

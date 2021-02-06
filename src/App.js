@@ -21,13 +21,9 @@ const App = () => {
           <div className='centralizeMainCard'>
             <div className="mainDiv">
                 <Route exact path='/' component={WelcomePage}></Route>
-                <CardContext.Provider value={{card,setCard}}>
-                    <Route exact path='/getid' component ={GetId}></Route>
-                    <AnswerIdContext.Provider value={{answerId,setAnswerId}}>
-                        <Route exact path='/questions' component ={Questions}></Route>
-                        <Route exact path='/answer' component ={Answer}></Route>
-                    </AnswerIdContext.Provider>
-                </CardContext.Provider>
+                <Route exact path='/getid' component ={GetId}></Route>
+                <Route exact path='/questions' component ={Questions}></Route>
+                <Route exact path='/answer/:questionId' component ={Answer}></Route>
             </div>
           </div>
         </Router>

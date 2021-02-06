@@ -12,9 +12,11 @@ import { useHistory } from 'react-router-dom'
 
 
 
-export default function Questions() {
+export default function Questions(props) {
 
     const history=useHistory();
+
+    const questionId=props.match.params.questionId;
 
     const [question,setQuestion]=useState(null);
     const [words,setWords]=useState([]);
@@ -23,8 +25,8 @@ export default function Questions() {
     useEffect(()=>{
         getSessionsCardByUserId(0) // fix value until login is not implemented
             .then((data)=>{
-                setQuestion(data.data.exercises[0].question)
-                let allWords=data.data.exercises[0].answer.split(";");
+                setQuestion(data.data.exercises[questionId].question)
+                let allWords=data.data.exercises[questionId].answer.split(";");
                 setGoodWords(allWords[0].split(","));
                 let badWords=allWords[1].split(",");
                 setWords(goodWords.concat(badWords));
