@@ -20,4 +20,8 @@ const deleteSessionByUserId = async (userId) =>{
     return await axios.delete(BASE_URL+"/gameSession/?userId="+userId);
 }
 
-export {getCardByIdentificationId,getSessionByUserId,createSession,deleteSessionByUserId};
+const getSessionsCardByUserId = async (userId) =>{
+    return await axios.get(BASE_URL+"/gameSession/card/?userId="+userId);
+}
+
+export {getCardByIdentificationId,getSessionByUserId,createSession,deleteSessionByUserId,getSessionsCardByUserId};
