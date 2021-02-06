@@ -4,7 +4,7 @@ import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
 import urhajos from "../pics/urhajos.png"
 import urhajoshata from "../pics/urhajoshata.png"
-import getCardByIdentificationId from "../context/ApiCalls"
+import {getCardByIdentificationId,createSession} from "../context/ApiCalls"
 import { CardContext} from '../context/CardContext'
 import { useHistory } from 'react-router-dom'
 
@@ -17,8 +17,12 @@ export default function GetId() {
     const [identificationId,setIdentificationId]=useState("");
 
     const onValidIdentificationId = (cardData) =>{
-        context.setCard(cardData);
-        history.push("/Questions")
+        let session={
+            "userId":0,
+            "cardId":cardData.id
+        }
+        createSession(session);
+        history.push("/Questions");
     }
 
     const submitCode = () => {
