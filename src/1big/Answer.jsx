@@ -7,37 +7,50 @@ import urhajoshata from "../pics/urhajoshata.png"
 import felho from "../pics/felho.png"
 import nap from "../pics/nap.png"
 import "./getId.css"
-import { CardContext,AnswerIdContext} from '../context/CardContext'
+import {getSessionsCardByUserId} from "../context/ApiCalls"
 import { useHistory } from 'react-router-dom'
 
 
 
 export default function Questions() {
 
-    const context=useContext(CardContext);
-    const answerIdContext=useContext(AnswerIdContext)
     const history=useHistory();
-    let words=[];
-    let goodWords=[];
+
+    const [question,setQuestion]=useState(null);
+    const [words,setWords]=useState([]);
+    const [goodWords,setGoodWords]=useState([]);
 
     useEffect(()=>{
-        let allWords=context.card.exercises[answerIdContext.answerId].answer.split(";");
-        goodWords=allWords[0].split(",");
-        let badWords=allWords[1].split(",");
-        words= goodWords.concat(badWords);
-        console.log(words);
-        console.log(goodWords);
+        getSessionsCardByUserId(0) // fix value until login is not implemented
+            .then((data)=>{
+                setQuestion(data.data.exercises[0].question)
+                let allWords=data.data.exercises[0].answer.split(";");
+                setGoodWords(allWords[0].split(","));
+                let badWords=allWords[1].split(",");
+                setWords(goodWords.concat(badWords));
+            })           
     },[])
 
     return (
+        
         <div>
-            <PinkInfo text={context.card.exercises[answerIdContext.answerId].question}/>
-            <div className="pics">
-                <img src={felho} className="responsive" style={{minWidth:"250px", paddingRight:"1%"}}/>
-                <img src={nap} className="responsive" style={{minWidth:"250px"}}/>
+            {question==null||words==null ? 
+            (
+                <div><p>Kérdés betöltése</p></div>
+            ) 
+            : 
+            (
+            <div>
+                <PinkInfo text={question}/>
+                <div className="pics">
+                    <img src={felho} className="responsive" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                    <img src={nap} className="responsive" style={{minWidth:"250px"}}/>
+                </div>
+                <p></p>
+                <PurpleButton text="Kész!" />
             </div>
-            <p></p>
-            <PurpleButton text="Kész!" />
+            )}
+            
     
         </div>
     )

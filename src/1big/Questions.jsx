@@ -15,8 +15,6 @@ import axios from 'axios'
 
 export default function Questions() {
 
-    const context=useContext(CardContext);
-    const answerIdContext=useContext(AnswerIdContext)
     const history=useHistory(); 
 
     const [card,setCard]=useState(null);
@@ -24,7 +22,7 @@ export default function Questions() {
 
     
     const answerQuestion = (id) =>{
-        answerIdContext.setAnswerId(id);
+        //answerIdContext.setAnswerId(id);
         history.push("/Answer");
     }
 
@@ -35,7 +33,7 @@ export default function Questions() {
     useEffect(()=>{
         getSessionsCardByUserId(0) // fix value until login is not implemented
             .then((data)=>setCard(data.data))     
-    },[])
+    },[card])
 
 
     return (
