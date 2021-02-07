@@ -1,9 +1,7 @@
-import React,{useContext,useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
-import urhajos from "../pics/urhajos.png"
-import urhajoshata from "../pics/urhajoshata.png"
 import felho from "../pics/felho.png"
 import nap from "../pics/nap.png"
 import "./getId.css"
@@ -51,9 +49,7 @@ export default function Questions(props) {
                 <p></p>
                 <PurpleButton text="Kész!" />
             </div>
-            )}
-            
-    
+            )}   
         </div>
     )
 }

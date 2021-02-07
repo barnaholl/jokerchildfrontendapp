@@ -1,16 +1,11 @@
-import React,{useContext,useState,useEffect} from 'react'
-import PinkInfo from "../1medium/PinkInfo"
+import React,{useState,useEffect} from 'react'
 import PurpleButton from "../1small/PurpleButton"
 import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
-import urhajoshata from "../pics/urhajoshata.png"
-import felho from "../pics/felho.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
-import { CardContext,AnswerIdContext} from '../context/CardContext'
 import {getSessionsCardByUserId} from "../context/ApiCalls"
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 
 
 export default function Questions() {
@@ -18,11 +13,10 @@ export default function Questions() {
     const history=useHistory(); 
 
     const [card,setCard]=useState(null);
-    const [userId,setUserId]=useState(0); 
+    const [userId,setUserId]=useState(0); //TODO:getfrom userToken
 
     
     const answerQuestion = (questionId) =>{
-        //answerIdContext.setAnswerId(id);
         history.push(`/Answer/${questionId}`);
     }
 
