@@ -18,8 +18,8 @@ export default function GetId() {
             "userId":0,
             "cardId":cardData.id
         }
-        createSession(session);
-        history.push("/Questions");
+        createSession(session).then((data)=>history.push("/Questions"));
+        
     }
 
     const submitCode = () => {
