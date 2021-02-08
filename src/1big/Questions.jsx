@@ -43,7 +43,13 @@ export default function Questions() {
                         <p className='h1'>{card.profession.name}</p>
                         <ol>
                             {
-                                card.exercises.map((exercise,index)=><li id={index} onClick={event=>answerQuestion(event.target.id)}>{exercise.question}</li>)
+                                card.exercises.map((exercise,index)=><li>
+                                    <div className="grid-container">
+                                        <p>{exercise.question}</p>
+                                        <PurpleButton id={index} onClick={event=>answerQuestion(event.target.id)} text="Megválaszolom" />     
+                                        <p>1/3</p>
+                                    </div>
+                                    </li>)
                             }
                             
                         </ol>
