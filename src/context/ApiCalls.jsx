@@ -28,11 +28,16 @@ const getExperienceByExerciseIdAndUserId = async (exerciseId,userId) =>{
     return await axios.get(BASE_URL+"/gameHistory/getExperienceByExerciseIdAndUserId?exerciseId="+exerciseId+"&userId="+userId);
 }
 
+const getSumXpByMemberIdAndCardId = async (userId,cardId) =>{
+    return await axios.get(BASE_URL+"/gameHistory/getSumXpByCardIdAndMemberId?cardId="+cardId+"&memberId="+userId);
+}
+
 export {
     getCardByIdentificationId,
     getSessionByUserId,
     createSession,
     deleteSessionByUserId,
     getSessionsCardByUserId,
-    getExperienceByExerciseIdAndUserId
+    getExperienceByExerciseIdAndUserId,
+    getSumXpByMemberIdAndCardId
 };

@@ -4,17 +4,22 @@ import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
-import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId} from "../context/ApiCalls"
+import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId,getSumXpByMemberIdAndCardId} from "../context/ApiCalls"
 import { useHistory } from 'react-router-dom'
 
 
 export default function Questions() {
+
+    const MAXIMUM_POINT_BY_QUESTION=3;
 
     const history=useHistory(); 
 
     const [card,setCard]=useState(null);
 
     const [dict,setDict]=useState(null);
+    const [maximumPointsByCard,setMaximumPointsByCard]=useState(0);
+    const [currentPointsByCard,setCurrentPointsByCard]=useState(0);
+
     const [isRenderable,setIsRenderable]=useState(false);
  
     const [gameHistory,setGameHistory]=useState(null);
@@ -32,18 +37,26 @@ export default function Questions() {
 
     useEffect(()=>{
         let dict2=new Map();
+        let summ=0;
         
         getSessionsCardByUserId(0) // fix value until login is not implemented
             .then((data)=>{
                 setCard(data.data);
+    
                 data.data.exercises.map((exercise)=>{
                     getExperienceByExerciseIdAndUserId(exercise.id,0) // 0 will be the userId
                     .then((data2)=>{                        
                         dict2.set(exercise.id,data2.data);
+                        setMaximumPointsByCard(maximumPointsByCard=>maximumPointsByCard+MAXIMUM_POINT_BY_QUESTION)
+                        setCurrentPointsByCard(currentPointsByCard=>currentPointsByCard+data2.data)
+                        //summ+=data2.data;
 
                         setDict(dict2);
-                        dict2.size>2 ? setIsRenderable(true) : console.log("Not yet render"+dict2.size);
-
+                        if(dict2.size>2 ){
+                            setIsRenderable(true);
+                        }
+                        
+                        
                     })
                 })
             })
@@ -80,7 +93,7 @@ export default function Questions() {
                     <PurpleButton onClick={getNewCard} text="Új kártyát kérek!" />
                     <div>
                         <MiniCard text="Leírás" align="left" className="oneline" />
-                        <MiniCard text="12/2 XP-t gyűjtöttél" align="right" className="oneline"/>
+                        <MiniCard text={currentPointsByCard+"/"+maximumPointsByCard+"XP-t gyűjtöttél"} align="right" className="oneline"/>
                     </div>
                 </div>
             ) 
