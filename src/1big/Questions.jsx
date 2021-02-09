@@ -20,7 +20,6 @@ export default function Questions() {
     
     
     const answerQuestion = (id) =>{
-        console.log(id);
         answerIdContext.setAnswerId(id);
         history.push("/Answer");
     }

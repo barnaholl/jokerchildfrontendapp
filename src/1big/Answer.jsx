@@ -13,29 +13,51 @@ import { useHistory } from 'react-router-dom'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-
-
-
-
-
-
-
 export default function DndTest() {
 
+    const context = useContext(CardContext);
+    const answerIdContext = useContext(AnswerIdContext)
+    const [words, setWords] = useState([])
+    let goodWords = [];
 
+    useEffect(() => {
+        getWords()
+    },[])
+
+    const getWords = () => {
+        let allWords = context.card.exercises[answerIdContext.answerId].answer.split(";");
+        goodWords = allWords[0].split(",");
+        let badWords = allWords[1].split(",");
+        console.log(goodWords.concat(badWords))
+        setWords(goodWords.concat(badWords), () => { 
+            console.log("in")
+            setState({
+                items: getItems(words.length),
+                selected: getItems(0)
+            })
+        })
+    }
+
+// fake data generator
+const getItems = (count) =>
+    Array.from({ length: count }, (v, k) => k).map(k => ({
+        id: `item-${words[k]}`,
+        content: words[k]
+    }));
+
+    const [state,setState] = useState({
+        items: getItems(3),
+        selected: getItems(0)
+    })
 
     // a little function to help us with reordering the result
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
-
         return result;
     };
-
-    /**
-     * Moves an item from one list to another list.
-     */
+     // Moves an item from one list to another list.
     const move = (source, destination, droppableSource, droppableDestination) => {
         const sourceClone = Array.from(source);
         const destClone = Array.from(destination);
@@ -51,7 +73,6 @@ export default function DndTest() {
     };
 
     const grid = 8;
-
     const getItemStyle = (isDragging, draggableStyle) => ({
         // some basic styles to make the items look a bit nicer
         userSelect: 'none',
@@ -70,40 +91,9 @@ export default function DndTest() {
         width: 250
     });
 
-    const context = useContext(CardContext);
-    const answerIdContext = useContext(AnswerIdContext)
-    const history = useHistory();
-    const [words, setWords] = useState([])
-    let goodWords = [];
-
-    useEffect(() => {
-        let allWords = context.card.exercises[answerIdContext.answerId].answer.split(";");
-        goodWords = allWords[0].split(",");
-        let badWords = allWords[1].split(",");
-        setWords(goodWords.concat(badWords));
-    }, [])
-    // fake data generator
-    const getItems = (count, offset = 0) =>
-        Array.from({ length: count }, (v, k) => k).map(k => ({
-            id: `item-${k + offset}`,
-            content: words[k]
-        }
-        )
-        );
 
 
-    const state = {
-        items: getItems(words.length),
-        selected: getItems(words.length)
-    };
-
-
-
-    /**
-     * A semi-generic way to handle multiple lists. Matches
-     * the IDs of the droppable container to the names of the
-     * source arrays stored in the state.
-     */
+     // A semi-generic way to handle multiple lists. Matches the IDs of the droppable container to the names of the source arrays stored in the state.
     const id2List = {
         droppable: 'items',
         droppable2: 'selected'
@@ -132,6 +122,7 @@ export default function DndTest() {
                 state = { selected: items };
             }
 
+            setState(state);
         } else {
             const result = move(
                 getList(source.droppableId),
@@ -140,10 +131,10 @@ export default function DndTest() {
                 destination
             );
 
-
-            state.items = result.droppable;
-            state.selected = result.droppable2
-
+            setState({
+                items: result.droppable,
+                selected: result.droppable2
+            });
         }
     };
 
@@ -184,7 +175,7 @@ export default function DndTest() {
                     <div
                         ref={provided.innerRef}
                         style={getListStyle(snapshot.isDraggingOver)}>
-                        {state.items.map((item, index) => (
+                        {state.selected.map((item, index) => (
                             <Draggable
                                 key={item.id}
                                 draggableId={item.id}
