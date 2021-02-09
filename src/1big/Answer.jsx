@@ -82,15 +82,22 @@ export default function DndTest() {
         let badWords = allWords[1].split(",");
         setWords(goodWords.concat(badWords));
     }, [])
+    // fake data generator
+    const getItems = (count, offset = 0) =>
+        Array.from({ length: count }, (v, k) => k).map(k => ({
+            id: `item-${k + offset}`,
+            content: words[k]
+        }
+        )
+        );
 
-    
 
-    const [state, setState] = useState({
-        items: Array.from(words.map((word, index) => ({
-            id: index,
-            content: word
-        }))),
-    })
+    const state = {
+        items: getItems(words.length),
+        selected: getItems(words.length)
+    };
+
+
 
     /**
      * A semi-generic way to handle multiple lists. Matches
@@ -125,7 +132,6 @@ export default function DndTest() {
                 state = { selected: items };
             }
 
-            setState(state);
         } else {
             const result = move(
                 getList(source.droppableId),
@@ -134,10 +140,10 @@ export default function DndTest() {
                 destination
             );
 
-            setState({
-                items: result.droppable,
-                selected: result.droppable2
-            });
+
+            state.items = result.droppable;
+            state.selected = result.droppable2
+
         }
     };
 
@@ -150,11 +156,11 @@ export default function DndTest() {
                     <div
                         ref={provided.innerRef}
                         style={getListStyle(snapshot.isDraggingOver)}>
-                        {words.map((item, index) => (
+                        {state.items.map((item, index) => (
                             <Draggable
-                                key={index}
-                                draggableId={index}
-                                index={index + 40}>
+                                key={item.id}
+                                draggableId={item.id}
+                                index={index}>
                                 {(provided, snapshot) => (
                                     <div
                                         ref={provided.innerRef}
@@ -164,7 +170,7 @@ export default function DndTest() {
                                             snapshot.isDragging,
                                             provided.draggableProps.style
                                         )}>
-                                        {item}
+                                        {item.content}
                                     </div>
                                 )}
                             </Draggable>
@@ -178,11 +184,11 @@ export default function DndTest() {
                     <div
                         ref={provided.innerRef}
                         style={getListStyle(snapshot.isDraggingOver)}>
-                        {words.map((item, index) => (
+                        {state.items.map((item, index) => (
                             <Draggable
-                                key={index}
-                                draggableId={index}
-                                index={index + 40}>
+                                key={item.id}
+                                draggableId={item.id}
+                                index={index}>
                                 {(provided, snapshot) => (
                                     <div
                                         ref={provided.innerRef}
@@ -192,7 +198,7 @@ export default function DndTest() {
                                             snapshot.isDragging,
                                             provided.draggableProps.style
                                         )}>
-                                        {item}
+                                        {item.content}
                                     </div>
                                 )}
                             </Draggable>
