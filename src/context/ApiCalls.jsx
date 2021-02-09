@@ -24,4 +24,15 @@ const getSessionsCardByUserId = async (userId) =>{
     return await axios.get(BASE_URL+"/gameSession/card/?userId="+userId);
 }
 
-export {getCardByIdentificationId,getSessionByUserId,createSession,deleteSessionByUserId,getSessionsCardByUserId};
+const getExperienceByExerciseIdAndUserId = async (exerciseId,userId) =>{
+    return await axios.get(BASE_URL+"/gameHistory/getExperienceByExerciseIdAndUserId?exerciseId="+exerciseId+"&userId="+userId);
+}
+
+export {
+    getCardByIdentificationId,
+    getSessionByUserId,
+    createSession,
+    deleteSessionByUserId,
+    getSessionsCardByUserId,
+    getExperienceByExerciseIdAndUserId
+};

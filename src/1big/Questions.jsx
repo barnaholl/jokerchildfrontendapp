@@ -4,7 +4,7 @@ import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
-import {getSessionsCardByUserId} from "../context/ApiCalls"
+import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId} from "../context/ApiCalls"
 import { useHistory } from 'react-router-dom'
 
 
@@ -13,6 +13,12 @@ export default function Questions() {
     const history=useHistory(); 
 
     const [card,setCard]=useState(null);
+
+    const [dict,setDict]=useState(null);
+    const [isRenderable,setIsRenderable]=useState(false);
+ 
+    const [gameHistory,setGameHistory]=useState(null);
+
     const [userId,setUserId]=useState(0); //TODO:getfrom userToken
 
     
@@ -25,15 +31,29 @@ export default function Questions() {
     }
 
     useEffect(()=>{
+        let dict2=new Map();
+        
         getSessionsCardByUserId(0) // fix value until login is not implemented
-            .then((data)=>setCard(data.data))     
-    },[card])
+            .then((data)=>{
+                setCard(data.data);
+                data.data.exercises.map((exercise)=>{
+                    getExperienceByExerciseIdAndUserId(exercise.id,0) // 0 will be the userId
+                    .then((data2)=>{                        
+                        dict2.set(exercise.id,data2.data);
+
+                        setDict(dict2);
+                        dict2.size>2 ? setIsRenderable(true) : console.log("Not yet render"+dict2.size);
+
+                    })
+                })
+            })
+    },[])
 
 
     return (
         
         <div>
-            {card==null ? 
+            {card==null || isRenderable==false ? 
             
             (<div><p>Kártya betöltése</p></div>) 
             :
@@ -47,7 +67,7 @@ export default function Questions() {
                                     <div className="grid-container">
                                         <p>{exercise.question}</p>
                                         <PurpleButton id={index} onClick={event=>answerQuestion(event.target.id)} text="Megválaszolom" />     
-                                        <p>1/3</p>
+                                        <p>{dict.get(exercise.id)}/3</p>
                                     </div>
                                     </li>)
                             }
