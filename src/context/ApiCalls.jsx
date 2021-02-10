@@ -47,8 +47,6 @@ const getIsSessionActiveByUserId = async (userId) =>{
 
 
 
-
-
 export {
     getCardByIdentificationId,
     getSessionByUserId,
@@ -59,5 +57,5 @@ export {
     getSumXpByMemberIdAndCardId,
     getXpByMemberId,
     getPlayedExercisesCountByMemberId,
-    getIsSessionActiveByUserId,
+    getIsSessionActiveByUserId
 };

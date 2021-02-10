@@ -4,7 +4,7 @@ import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
-import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId,getSumXpByMemberIdAndCardId} from "../context/ApiCalls"
+import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId,deleteSessionByUserId} from "../context/ApiCalls"
 import { useHistory } from 'react-router-dom'
 
 
@@ -32,7 +32,10 @@ export default function Questions() {
     }
 
     const getNewCard=()=>{
-        history.push("/GetId");
+        deleteSessionByUserId(0) // 0 hard coded for basic user Todo change
+            .then(history.push("/GetId"),
+            window.location.reload() //Needs to reload navbar
+            ); 
     }
 
     useEffect(()=>{
