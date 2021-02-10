@@ -5,6 +5,7 @@ import WelcomePage from "./1big/WelcomePage"
 import GetId from "./1big/GetId"
 import Questions from "./1big/Questions"
 import Answer from "./1big/Answer"
+import Statistics from "./1big/Statistics"
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
                 <Route exact path='/getid' component ={GetId}></Route>
                 <Route exact path='/questions' component ={Questions}></Route>
                 <Route exact path='/answer/:questionId' component ={Answer}></Route>
+                <Route exact path='/statistics' component ={Statistics}></Route>
             </div>
           </div>
         </Router>

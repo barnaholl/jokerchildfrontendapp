@@ -54,8 +54,7 @@ export default function Questions() {
                         setDict(dict2);
                         if(dict2.size>2 ){
                             setIsRenderable(true);
-                        }
-                        
+                        }                        
                         
                     })
                 })

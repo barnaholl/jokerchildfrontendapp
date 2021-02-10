@@ -1,0 +1,32 @@
+import React,{useState,useEffect} from 'react'
+import {getXpByMemberId} from "../context/ApiCalls"
+
+
+export default function Statistics() {
+
+    const [playerXp,setPlayerXp]=useState(null);
+    const [isRenderable,setIsRenderable]=useState(true);
+
+    useEffect(()=>{
+        getXpByMemberId(9)// "9" is Viki atm, need to do a fix dummy user
+            .then((data)=>setPlayerXp(data.data))
+                
+
+    })
+    
+    return(
+        <div>
+            {!isRenderable ? 
+            (<div><h1>Statisztikák betöltése</h1></div>)
+            :
+            (
+                <div>
+                    <h1>Stats</h1>
+                    <p>Tapasztalati pont: {playerXp}</p>
+                </div>
+            ) 
+            }
+        </div>
+        
+    )   
+}
