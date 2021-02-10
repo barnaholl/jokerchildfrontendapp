@@ -1,0 +1,21 @@
+.firstDroppable {
+    border-radius: 20px;
+    background: pink;
+    min-height: 80px;
+}
+
+.secondDroppable {
+
+    border-radius: 20px;
+    background: black;
+    min-height: 80px;
+    vertical-align: top;
+}
+
+.inline {
+    display: inline-block; 
+    border: 1px solid blue; 
+    margin:10px;
+    vertical-align: top;
+    min-height:min-content;
+}
