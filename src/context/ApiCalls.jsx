@@ -40,6 +40,12 @@ const getPlayedExercisesCountByMemberId = async (userId) =>{
     return await axios.get(BASE_URL+"/gameHistory/getPlayedExercisesCountByMemberId?memberId="+userId);
 }
 
+const getIsSessionActiveByUserId = async (userId) =>{
+    return await axios.get(BASE_URL+"/gameSession/isActive?userId="+userId);
+}
+
+
+
 
 export {
     getCardByIdentificationId,
@@ -50,5 +56,6 @@ export {
     getExperienceByExerciseIdAndUserId,
     getSumXpByMemberIdAndCardId,
     getXpByMemberId,
-    getPlayedExercisesCountByMemberId
+    getPlayedExercisesCountByMemberId,
+    getIsSessionActiveByUserId
 };

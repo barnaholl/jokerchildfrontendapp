@@ -17,7 +17,10 @@ export default function GetId() {
             "userId":0,
             "cardId":cardData.id
         }
-        createSession(session).then((data)=>history.push("/Questions"));
+        createSession(session).then(
+            history.push("/Questions"),
+            window.location.reload() //Need to relaoad the navbar
+            );
         
     }
 
