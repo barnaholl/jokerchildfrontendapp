@@ -20,34 +20,18 @@ export default function DndTest() {
     const [words, setWords] = useState([])
     let goodWords = [];
 
-    useEffect(() => {
-        getWords()
-    },[])
 
-    const getWords = () => {
-        let allWords = context.card.exercises[answerIdContext.answerId].answer.split(";");
-        goodWords = allWords[0].split(",");
-        let badWords = allWords[1].split(",");
-        console.log(goodWords.concat(badWords))
-        setWords(goodWords.concat(badWords), () => { 
-            console.log("in")
-            setState({
-                items: getItems(words.length),
-                selected: getItems(0)
-            })
-        })
-    }
 
 // fake data generator
-const getItems = (count) =>
+const getItems = (count, offset = 0) =>
     Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${words[k]}`,
-        content: words[k]
+        id: `item-${k + offset}`,
+        content: `item ${k + offset}`
     }));
 
     const [state,setState] = useState({
         items: getItems(3),
-        selected: getItems(0)
+        selected: getItems(5,24)
     })
 
     // a little function to help us with reordering the result
@@ -116,13 +100,20 @@ const getItems = (count) =>
                 destination.index
             );
 
-            let state = { items };
 
             if (source.droppableId === 'droppable2') {
-                state = { selected: items };
+                setState({
+                    items: state.items,
+                    selected: items
+                });
+            } else {
+                setState({
+                    items: items,
+                    selected: state.selected
+                });
             }
 
-            setState(state);
+            
         } else {
             const result = move(
                 getList(source.droppableId),
