@@ -3,7 +3,6 @@ import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
 import {getCardByIdentificationId,createSession} from "../context/ApiCalls"
-import { CardContext} from '../context/CardContext'
 import { useHistory } from 'react-router-dom'
 
 
