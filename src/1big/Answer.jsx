@@ -23,15 +23,15 @@ export default function DndTest() {
 
 
 // fake data generator
-const getItems = (count, offset = 0) =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k + offset}`,
-        content: `item ${k + offset}`
+const getItems = (count) =>
+    Array.from({ length: count }, (v,k) => k).map(k => ({
+        id: `item-${k}`,
+        content: `item ${k}`
     }));
 
     const [state,setState] = useState({
         items: getItems(3),
-        selected: getItems(5,24)
+        selected: getItems(0)
     })
 
     // a little function to help us with reordering the result
