@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import "./game.css"
+import Navbar from "./1medium/Navbar"
 import WelcomePage from "./1big/WelcomePage"
 import GetId from "./1big/GetId"
 import Questions from "./1big/Questions"
@@ -12,6 +13,7 @@ const App = () => {
 
     return (
         <Router>
+          <Navbar/>
           <div className='centralizeMainCard'>
             <div className="mainDiv">
                 <Route exact path='/' component={WelcomePage}></Route>
