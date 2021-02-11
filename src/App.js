@@ -2,31 +2,26 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import "./game.css"
+import Navbar from "./1medium/Navbar"
 import WelcomePage from "./1big/WelcomePage"
 import GetId from "./1big/GetId"
 import Questions from "./1big/Questions"
 import Answer from "./1big/Answer"
-import { AnswerIdContext, CardContext } from "./context/CardContext";
+import Statistics from "./1big/Statistics"
 
 
 const App = () => {
 
-    const [card, setCard] = useState("null");
-    const [answerId, setAnswerId] = useState("null");
-
-
     return (
         <Router>
+          <Navbar/>
           <div className='centralizeMainCard'>
             <div className="mainDiv">
                 <Route exact path='/' component={WelcomePage}></Route>
-                <CardContext.Provider value={{card,setCard}}>
-                    <Route exact path='/getid' component ={GetId}></Route>
-                    <AnswerIdContext.Provider value={{answerId,setAnswerId}}>
-                        <Route exact path='/questions' component ={Questions}></Route>
-                        <Route exact path='/answer' component ={Answer}></Route>
-                    </AnswerIdContext.Provider>
-                </CardContext.Provider>
+                <Route exact path='/getid' component ={GetId}></Route>
+                <Route exact path='/questions' component ={Questions}></Route>
+                <Route exact path='/answer/:questionId' component ={Answer}></Route>
+                <Route exact path='/statistics' component ={Statistics}></Route>
             </div>
           </div>
         </Router>

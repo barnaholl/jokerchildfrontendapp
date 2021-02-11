@@ -1,4 +1,4 @@
-import React,{useState,useContext}from 'react'
+import React,{useState}from 'react'
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
@@ -9,14 +9,20 @@ import { useHistory } from 'react-router-dom'
 
 export default function GetId() {
 
-    const context=useContext(CardContext);
     const history=useHistory();
 
     const [identificationId,setIdentificationId]=useState("");
 
     const onValidIdentificationId = (cardData) =>{
-        context.setCard(cardData);
-        history.push("/Questions")
+        let session={
+            "userId":0,
+            "cardId":cardData.id
+        }
+        createSession(session).then(
+            history.push("/Questions"),
+            window.location.reload() //Need to relaoad the navbar
+            );
+        
     }
 
     const submitCode = () => {
@@ -27,7 +33,9 @@ export default function GetId() {
     return (
             <div>
                 <PinkInfo text="Kérlek add meg a kártyán található kódot amivel játszani szeretnél." />
-                <div className="input1"><input type="text" name="name"  className="input1" onChange={event=>setIdentificationId(event.target.value)}/></div>
+                <div className="input1">
+                    <input type="text" name="name"  className="input1" onChange={event=>setIdentificationId(event.target.value)}/>
+                </div>
                 <PurpleButton text="Mutasd a kártyát!" onClick={submitCode}/>
                       
             </div>      
