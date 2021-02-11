@@ -3,12 +3,12 @@ import PinkInfo from "../1medium/PinkInfo";
 import PurpleButton from "../1small/PurpleButton";
 import "./getId.css";
 import "./answer.css";
-
 import "./questions.css";
 import { useHistory } from 'react-router-dom';
 import {getSessionsCardByUserId} from "../context/ApiCalls";
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import PopupButton from "../1small/PopupButton";
+
 
 export default function DndTest(props) {
 
@@ -239,8 +239,8 @@ export default function DndTest(props) {
                 )}
             </Droppable>
         </div>
-        <div style={{marginTop: '2vw'}}>
-                <PurpleButton text="Kész!" onClick={validate}/>        
+        <div style={{marginTop: "1vw"}}>
+        <PopupButton text="Kész!" validation={validate} goodW={state.goodWords} selectedW={state.selected}/> 
         </div>
         </DragDropContext>
     );
