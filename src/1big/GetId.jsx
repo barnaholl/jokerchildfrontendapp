@@ -2,8 +2,6 @@ import React,{useState,useContext}from 'react'
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
-import urhajos from "../pics/urhajos.png"
-import urhajoshata from "../pics/urhajoshata.png"
 import getCardByIdentificationId from "../context/ApiCalls"
 import { CardContext} from '../context/CardContext'
 import { useHistory } from 'react-router-dom'
@@ -23,7 +21,7 @@ export default function GetId() {
 
     const submitCode = () => {
         getCardByIdentificationId(identificationId)
-            .then(data=>data.data=="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
+            .then(data=>data.data==="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
     }
 
     return (

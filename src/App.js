@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import axios from "axios";
-import {Button, Card} from 'react-bootstrap';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import "./game.css"
 import WelcomePage from "./1big/WelcomePage"
 import GetId from "./1big/GetId"

@@ -1,10 +1,7 @@
-import React,{useContext,useState} from 'react'
-import PinkInfo from "../1medium/PinkInfo"
+import React,{useContext} from 'react'
 import PurpleButton from "../1small/PurpleButton"
 import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
-import urhajoshata from "../pics/urhajoshata.png"
-import felho from "../pics/felho.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
 import { CardContext,AnswerIdContext} from '../context/CardContext'
@@ -42,13 +39,13 @@ export default function Questions() {
                         <p className='h1'>{context.card.profession.name}</p>
                         <ol>
                             {
-                                context.card.exercises.map((exercise,index)=><li id={index} onClick={event=>answerQuestion(event.target.id)}>{exercise.question}</li>)
+                                context.card.exercises.map((exercise,index)=><li id={index} key={index} onClick={event=>answerQuestion(event.target.id)}>{exercise.question}</li>)
                             }
                             
                         </ol>
                     </div>
-                    <div className="pics">
-                        <img src={urhajos} className="responsiveGetId" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                    <div>
+                        <img src={urhajos} alt="alt" className="responsiveGetId" style={{width:'100%',maxWidth:'300px',height:"auto", paddingRight:"1%"}}/>
                     </div>
                     <PurpleButton onClick={getNewCard} text="Új kártyát kérek!" />
                     <div>

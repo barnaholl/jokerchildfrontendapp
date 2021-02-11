@@ -2,10 +2,6 @@ import React, { useContext, useState, useEffect } from 'react'
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
-import urhajos from "../pics/urhajos.png"
-import urhajoshata from "../pics/urhajoshata.png"
-import felho from "../pics/felho.png"
-import nap from "../pics/nap.png"
 import "./getId.css"
 import "./answer.css"
 
@@ -19,30 +15,28 @@ export default function DndTest() {
 
     const context = useContext(CardContext);
     const answerIdContext = useContext(AnswerIdContext)
-    let goodWords = [];
+    const history=useHistory();
+    const [question,setQuestion] = useState('')
 
 
     useEffect( () => {
-        setAnswers();
-    }, [])
-    const [question,setQuestion] = useState('')
-    const setAnswers = () => {
         let allWords = context.card.exercises[answerIdContext.answerId].answer.split(";");
-        goodWords = allWords[0].split(",");
         let badWords = allWords[1].split(",");
-        const newW = goodWords.concat(badWords);
+        const newW = allWords[0].split(",").concat(badWords);
         setQuestion(context.card.exercises[answerIdContext.answerId].question);
         setState( () => {
             return {
                 words: newW,
+                goodWords: allWords[0].split(","),
                 items: getItems(newW.length, newW),
                 selected: getItems(0),
             }
         })
-    }
+    }, [])
 
     const [state,setState] = useState({
         words: [],
+        goodWords: [],
         items: [],
         selected: [],
         
@@ -88,13 +82,15 @@ export default function DndTest() {
         // change background colour if dragging
         background: isDragging ? 'lightgreen' : 'grey',
         height: '35px',
+        color: isDragging ? 'black' : 'white',
         // styles we need to apply on draggables
         ...draggableStyle
     });
 
     const getListStyle = isDraggingOver => ({
         padding: grid,
-        width: 250,
+        width: '35vw',
+        minWidth: '200px',
         height: '100%',
     });
 
@@ -126,11 +122,15 @@ export default function DndTest() {
 
             if (source.droppableId === 'droppable2') {
                 setState({
+                    words: state.words,
+                    goodWords: state.goodWords,
                     items: state.items,
                     selected: items
                 });
             } else {
                 setState({
+                    words: state.words,
+                    goodWords: state.goodWords,
                     items: items,
                     selected: state.selected
                 });
@@ -146,11 +146,23 @@ export default function DndTest() {
             );
 
             setState({
+                words: state.words,
+                goodWords: state.goodWords,
                 items: result.droppable,
                 selected: result.droppable2
             });
         }
     };
+
+    const validate = () => {
+        const selectedItems = [];
+        state.selected.map(item => {
+            selectedItems.push(item.content)
+        })
+        if(JSON.stringify(selectedItems.sort()) === JSON.stringify(state.goodWords.sort())) {
+            history.push("/Questions")
+        }
+    }
 
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
@@ -226,7 +238,9 @@ export default function DndTest() {
                 )}
             </Droppable>
         </div>
-        <PurpleButton text="Kész!" />
+        <div style={{marginTop: '2vw'}}>
+                <PurpleButton text="Kész!" onClick={validate}/>        
+        </div>
         </DragDropContext>
     );
 }

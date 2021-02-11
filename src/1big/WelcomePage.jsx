@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import axios from "axios";
-import {Button, Card} from 'react-bootstrap';
+import React from "react";
 import "../game.css"
 import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
