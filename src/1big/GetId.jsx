@@ -19,7 +19,7 @@ export default function GetId() {
         }
         createSession(session).then(
             history.push("/Questions"),
-            window.location.reload() //Need to relaoad the navbar
+            window.location.reload() //Need to reload the navbar
             );
         
     }
