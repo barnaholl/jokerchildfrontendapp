@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useContext, useState, useEffect} from 'react'
 import PurpleButton from "../1small/PurpleButton"
 import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
@@ -89,8 +89,8 @@ export default function Questions() {
                             
                         </ol>
                     </div>
-                    <div className="pics">
-                        <img src={urhajos} className="responsiveGetId" style={{minWidth:"250px", paddingRight:"1%"}}/>
+                    <div>
+                        <img src={urhajos} alt="alt" className="responsiveGetId" style={{width:'100%',maxWidth:'300px',height:"auto", paddingRight:"1%"}}/>
                     </div>
                     <PurpleButton onClick={getNewCard} text="Új kártyát kérek!" />
                     <div>

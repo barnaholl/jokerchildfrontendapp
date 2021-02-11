@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import {Card} from 'react-bootstrap';
+import React from "react";
 import "./pinkInfo.css"
 
 export default function PinkInfo(props) {
