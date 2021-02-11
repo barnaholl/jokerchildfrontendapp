@@ -5,6 +5,10 @@
     display: inline-block;
    }
 
+   .onelineDnd {
+    border: solid 1px #ccc;
+    display: inline-block;
+   }
 .grid-container {
     display: grid;
     grid-template-columns: 60% 20% 20%

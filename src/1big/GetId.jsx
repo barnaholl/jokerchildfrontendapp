@@ -26,7 +26,7 @@ export default function GetId() {
 
     const submitCode = () => {
         getCardByIdentificationId(identificationId)
-            .then(data=>data.data=="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
+            .then(data=>data.data==="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
     }
 
     return (

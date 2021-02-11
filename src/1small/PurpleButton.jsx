@@ -1,6 +1,6 @@
 import React from 'react'
 import "./PurpleButton"
-import {Button, Card} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 
 export default function PurpleButton(props) {
