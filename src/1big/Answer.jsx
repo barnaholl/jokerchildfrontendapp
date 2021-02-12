@@ -155,19 +155,9 @@ export default function DndTest(props) {
         }
     };
 
-    const backToQuestionsPage = () => {
-        history.push("/Questions")
-    }
 
-    const validate = () => {
-        const selectedItems = [];
-        state.selected.map(item => {
-            selectedItems.push(item.content)
-        })
-        if(JSON.stringify(selectedItems.sort()) === JSON.stringify(state.goodWords.sort())) {
-            backToQuestionsPage();
-        }
-    }
+
+
 
     // Normally you would want to split things out into separate components.
     // But in this example everything is just done in one place for simplicity
