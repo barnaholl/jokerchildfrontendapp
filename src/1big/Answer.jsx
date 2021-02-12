@@ -4,7 +4,7 @@ import PurpleButton from "../1small/PurpleButton";
 import "./getId.css";
 import "./answer.css";
 import "./questions.css";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import {getSessionsCardByUserId} from "../context/ApiCalls";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import PopupButton from "../1small/PopupButton";
@@ -28,7 +28,7 @@ export default function DndTest(props) {
                     return {
                         words: newW,
                         goodWords: allWords[0].split(","),
-                        items: getItems(newW.length, newW),
+                        items: getItems(newW.length, newW.sort().reverse()),
                         selected: getItems(0),
                     }
                 })
@@ -155,13 +155,17 @@ export default function DndTest(props) {
         }
     };
 
+    const backToQuestionsPage = () => {
+        history.push("/Questions")
+    }
+
     const validate = () => {
         const selectedItems = [];
         state.selected.map(item => {
             selectedItems.push(item.content)
         })
         if(JSON.stringify(selectedItems.sort()) === JSON.stringify(state.goodWords.sort())) {
-            history.push("/Questions")
+            backToQuestionsPage();
         }
     }
 
@@ -239,9 +243,10 @@ export default function DndTest(props) {
                 )}
             </Droppable>
         </div>
-        <div style={{marginTop: "1vw"}}>
+        <div style={{marginTop: "1vw", marginBottom: '1vw'}}>
         <PopupButton text="Kész!" validation={validate} goodW={state.goodWords} selectedW={state.selected}/> 
         </div>
+        <Link to='/questions'><PurpleButton text="Vissza a kérdésekhez!"/></Link>
         </DragDropContext>
     );
 }
