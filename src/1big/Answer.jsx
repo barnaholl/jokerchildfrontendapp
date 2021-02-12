@@ -234,7 +234,7 @@ export default function DndTest(props) {
             </Droppable>
         </div>
         <div style={{marginTop: "1vw", marginBottom: '1vw'}}>
-        <PopupButton text="Kész!" validation={validate} goodW={state.goodWords} selectedW={state.selected}/> 
+        <PopupButton text="Kész!" goodW={state.goodWords} selectedW={state.selected}/> 
         </div>
         <Link to='/questions'><PurpleButton text="Vissza a kérdésekhez!"/></Link>
         </DragDropContext>
