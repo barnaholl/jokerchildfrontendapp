@@ -1,7 +1,7 @@
 
 .miniCLeft {
     text-align: center;
-    font-family: 'Amatic SC', cursive;
+    font-family:'Courier New', Courier, monospace;
     font-weight: 900;
     font-size:x-large;
     border-style: solid;
@@ -20,7 +20,7 @@
 
 .miniCRight {
     text-align: center;
-    font-family: 'Amatic SC', cursive;
+    font-family:'Courier New', Courier, monospace;
     font-weight: 900;
     font-size:x-large;
     border-style: solid;

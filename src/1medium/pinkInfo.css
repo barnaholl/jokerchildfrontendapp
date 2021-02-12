@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
 
 .test {
     background-color: #f7bdbd;
@@ -9,7 +8,7 @@
     padding-top: 1%;
 
     text-align: center;
-    font-family: 'Amatic SC', cursive;
+    font-family:'Courier New', Courier, monospace;
     font-weight: 900;
     font-size:x-large;
     margin: 5%;
