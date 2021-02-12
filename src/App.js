@@ -8,6 +8,7 @@ import GetId from "./1big/GetId"
 import Questions from "./1big/Questions"
 import Answer from "./1big/Answer"
 import Statistics from "./1big/Statistics"
+import AddCard from "./1big/AddCard"
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
                 <Route exact path='/questions' component ={Questions}></Route>
                 <Route exact path='/answer/:questionId' component ={Answer}></Route>
                 <Route exact path='/statistics' component ={Statistics}></Route>
+                <Route exact path='/addcard' component={AddCard}></Route>
             </div>
           </div>
         </Router>
