@@ -50,9 +50,15 @@ const createGameHistory = async (gameHistory) =>{
     return await axios.post(BASE_URL+"/gameHistory/",gameHistory);
 }
 
+
 const getIsGameHistoryActiveByExerciseIdAndUserId = async (exerciseId,userId) =>{
     return await axios.get(BASE_URL+"/gameHistory/getIsGameHistoryExistByExerciseIdAndUserId?exerciseId="+exerciseId+"&userId="+userId);
 }
+
+const validateAnswer = async (userId,exerciseId,isPassed) =>{
+    return await axios.put(BASE_URL+"/gameHistory/validateExercise?exerciseId="+exerciseId+"&memberId="+userId+"&passed="+isPassed);
+}
+
 
 
 
@@ -71,5 +77,7 @@ export {
     getPlayedExercisesCountByMemberId,
     getIsSessionActiveByUserId,
     createGameHistory,
-    getIsGameHistoryActiveByExerciseIdAndUserId
+    getIsGameHistoryActiveByExerciseIdAndUserId,
+    validateAnswer
+    
 };

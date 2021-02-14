@@ -39,14 +39,12 @@ export default function Questions() {
         getIsGameHistoryActiveByExerciseIdAndUserId(card.exercises[questionId].id,0)
             .then((data)=> data.data ?
                 (
-                    //console.log(data)
                     history.push(`/Answer/${questionId}`) 
                 ) 
                 : 
                 (
-                    //console.log(data)
                     createGameHistory(gameHistory)
-                        .then((data)=>console.log(data))//history.push(`/Answer/${questionId}`));
+                        .then(history.push(`/Answer/${questionId}`))
                 ))
               
     }

@@ -13,14 +13,17 @@ import PopupButton from "../1small/PopupButton";
 export default function DndTest(props) {
 
     const history=useHistory();
-    const questionId=props.match.params.questionId;
+    const questionId=props.match.params.questionId
 
     const [question,setQuestion]=useState(null);
+    const [exerciseId,setExerciseId]=useState(null);
+
 
     useEffect(()=>{
         getSessionsCardByUserId(0) // fix value until login is not implemented
             .then((data)=>{
-                setQuestion(data.data.exercises[questionId].question)
+                setQuestion(data.data.exercises[questionId].question);
+                setExerciseId(data.data.exercises[questionId].id)
                 let allWords=data.data.exercises[questionId].answer.split(";");
                 let badWords=allWords[1].split(",");
                 const newW=(allWords[0].split(",").concat(badWords));
@@ -234,7 +237,7 @@ export default function DndTest(props) {
             </Droppable>
         </div>
         <div style={{marginTop: "1vw", marginBottom: '1vw'}}>
-        <PopupButton text="Kész!" goodW={state.goodWords} selectedW={state.selected}/> 
+        <PopupButton text="Kész!" exerciseId={exerciseId} goodW={state.goodWords} selectedW={state.selected}/> 
         </div>
         <Link to='/questions'><PurpleButton text="Vissza a kérdésekhez!"/></Link>
         </DragDropContext>
