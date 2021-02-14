@@ -45,6 +45,7 @@ export default function PopupButton(props) {
             selectedItems.push(item.content)
         })
         if(JSON.stringify(selectedItems.sort()) === JSON.stringify(props.goodW.sort())) {
+            //TODO: put history
             history.push("/Questions")
         }
     }
