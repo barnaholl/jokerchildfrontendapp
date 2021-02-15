@@ -1,64 +1,16 @@
-import React, { useState,useEffect } from "react";
-import { Link } from "react-router-dom";
-import {getIsSessionActiveByUserId} from "../context/ApiCalls"
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-
-
-const Navbar1 = () => {
-
-    const [isSessionActive,setIssessionActive]=useState(null);
-
-    useEffect(()=>{
-        getIsSessionActiveByUserId(0) // fix value until login is not implemented
-            .then((data)=>{
-                setIssessionActive(data.data);
-            })
-    })
-
+import React from 'react'
+import { Navbar, Nav } from 'react-bootstrap';
+import './pinkInfo.css'
+export default function Navbar1() {
   return (
-
-    <div>
-        {isSessionActive==null ? 
-        (
-            <div></div>
-        ) 
-        : 
-        (
-            <div>
-                <header>
-                    <Link to={"/"}>Home</Link>
-                    {isSessionActive==true ?
-                    (
-                        <Link to={"/questions"}>Játék</Link>
-                    ) 
-                    :
-                    (
-                        <Link to={"/getid"}>Játék</Link>
-                    )}
-                    <Link to={"/Statistics"}>Statisztikák</Link>
-                    <Navbar collapseOnSelect>
-              <Navbar.Header>
-                <Navbar.Brand>Logo</Navbar.Brand>
-                <Navbar.Toggle />
-              </Navbar.Header>
-              <Navbar.Collapse>
-                <Nav>
-                  <NavItem eventKey="a" href="#">
-                    Link1
-            </NavItem>
-
-                  <NavItem eventKey="b" href="#">
-                    Link2
-            </NavItem>
-                </Nav>
-              </Navbar.Collapse>
-            </Navbar>
-                </header>
-            </div>
-        )}
+    <div >
+  <Navbar collapseOnSelect expand="lg"  style={{backgroundColor: "#7749f8", borderRadius: "20px", marginTop:"1vw", marginLeft:'1vw', marginRight: '1vw', fontFamily:"Courier New, courier, monospace", fontSize:'1vw'}} variant="dark">
+    <Nav className="m-auto">
+      <Nav.Link href="/">Kezdőlap</Nav.Link>
+      <Nav.Link href="/getid">Játék</Nav.Link>
+      <Nav.Link href="/statistics">Statisztikák</Nav.Link>
+    </Nav>
+  </Navbar>
     </div>
-  );
-};
-
-
-export default Navbar1;
+  )
+}
