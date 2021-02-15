@@ -59,7 +59,9 @@ const validateAnswer = async (userId,exerciseId,isPassed) =>{
     return await axios.put(BASE_URL+"/gameHistory/validateExercise?exerciseId="+exerciseId+"&memberId="+userId+"&passed="+isPassed);
 }
 
-
+const deleteAllGameHistoryByUserId = async (userId) =>{
+    return await axios.delete(BASE_URL+"/gameHistory/allGameHistoryByUserId?userId="+userId);
+}
 
 
 
@@ -78,6 +80,7 @@ export {
     getIsSessionActiveByUserId,
     createGameHistory,
     getIsGameHistoryActiveByExerciseIdAndUserId,
-    validateAnswer
+    validateAnswer,
+    deleteAllGameHistoryByUserId
     
 };
