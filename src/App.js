@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import "./game.css"
-import Navbar from "./1medium/Navbar"
+import Navbar1 from "./1medium/Navbar1"
 import WelcomePage from "./1big/WelcomePage"
 import GetId from "./1big/GetId"
 import Questions from "./1big/Questions"
@@ -15,7 +15,7 @@ const App = () => {
 
     return (
         <Router>
-          <Navbar/>
+          <Navbar1/>
           <div className='centralizeMainCard'>
             <div className="mainDiv">
                 <Route exact path='/' component={WelcomePage}></Route>
