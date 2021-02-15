@@ -9,7 +9,7 @@ export default function Statistics() {
     const [isRenderable,setIsRenderable]=useState(true);
 
     useEffect(()=>{
-        getXpByMemberId(9)// "9" is Viki atm, need to do a fix dummy user
+        getXpByMemberId(0)// "0" is Viki atm, need to do a fix dummy user
             .then((data)=>setPlayerXp(data.data));
         
         getPlayedExercisesCountByMemberId(0) //0 is the memeber id of game histories
