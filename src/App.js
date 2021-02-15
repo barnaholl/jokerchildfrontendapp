@@ -9,6 +9,7 @@ import Questions from "./1big/Questions"
 import Answer from "./1big/Answer"
 import Statistics from "./1big/Statistics"
 import AddCard from "./1big/AddCard"
+import ProfilePage from "./1big/ProfilePage";
 
 
 const App = () => {
@@ -24,6 +25,8 @@ const App = () => {
                 <Route exact path='/answer/:questionId' component ={Answer}></Route>
                 <Route exact path='/statistics' component ={Statistics}></Route>
                 <Route exact path='/addcard' component={AddCard}></Route>
+                <Route exact path='/profil' component={ProfilePage}></Route>
+
             </div>
           </div>
         </Router>

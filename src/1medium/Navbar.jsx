@@ -35,6 +35,8 @@ const Navbar = () => {
                         <Link to={"/getid"}>Játék</Link>
                     )}
                     <Link to={"/Statistics"}>Statisztikák</Link>
+                    <Link to={"/Profil"}>Profil</Link>
+
                 </header>
             </div>
         )}
