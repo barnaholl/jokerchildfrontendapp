@@ -9,6 +9,7 @@ export default function Navbar1() {
       <Nav.Link href="/">Kezdőlap</Nav.Link>
       <Nav.Link href="/getid">Játék</Nav.Link>
       <Nav.Link href="/statistics">Statisztikák</Nav.Link>
+      <Nav.Link href="/profil">Profil</Nav.Link>
     </Nav>
   </Navbar>
     </div>
