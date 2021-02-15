@@ -27,8 +27,8 @@ const getSessionsCardByUserId = async (userId) =>{
 }
 
 const getExperienceByExerciseIdAndUserId = async (exerciseId,userId) =>{
-    return await axios.get(BASE_URL+"/gameHistory/getExperienceByExerciseIdAndUserId?exerciseId="+exerciseId+"&userId="+userId);
-}
+    return await axios.get(BASE_URL+"/gameHistory/getExperienceByExerciseIdAndMemberId?exerciseId="+exerciseId+"&userId="+userId);
+    }
 
 const getSumXpByMemberIdAndCardId = async (userId,cardId) =>{
     return await axios.get(BASE_URL+"/gameHistory/getSumXpByCardIdAndMemberId?cardId="+cardId+"&memberId="+userId);
