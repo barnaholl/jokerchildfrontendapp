@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL="https://joker-child-spring.herokuapp.com"; //"http://localhost:8080";
+const BASE_URL="http://localhost:8080";//"https://joker-child-spring.herokuapp.com"; //"
 
 const POST_CONFIG={"Content-Type": "application/json"}
 
@@ -45,6 +45,12 @@ const getIsSessionActiveByUserId = async (userId) =>{
     return await axios.get(BASE_URL+"/gameSession/isActive?userId="+userId);
 }
 
+const createCard = async (card) =>{
+    return await axios.post(BASE_URL+"/card/",card);
+}
+
+
+
 
 
 
@@ -58,5 +64,6 @@ export {
     getSumXpByMemberIdAndCardId,
     getXpByMemberId,
     getPlayedExercisesCountByMemberId,
-    getIsSessionActiveByUserId
+    getIsSessionActiveByUserId,
+    createCard
 };
