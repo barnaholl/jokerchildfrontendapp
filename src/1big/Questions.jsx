@@ -4,7 +4,8 @@ import "../1medium/pinkInfo.css"
 import urhajos from "../pics/urhajos.png"
 import MiniCard from "../1small/MiniCard"
 import "./questions.css"
-import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId,deleteSessionByUserId} from "../context/ApiCalls"
+import {getSessionsCardByUserId,getExperienceByExerciseIdAndUserId,deleteSessionByUserId,
+createGameHistory,getIsGameHistoryActiveByExerciseIdAndUserId} from "../context/ApiCalls"
 import { useHistory } from 'react-router-dom'
 
 
@@ -28,7 +29,24 @@ export default function Questions() {
 
     
     const answerQuestion = (questionId) =>{
-        history.push(`/Answer/${questionId}`);
+
+        let gameHistory={
+            "cardId": card.id,
+            "exerciseId": card.exercises[questionId].id,
+            "memberId": 0  //Todo set player's id  
+        }
+
+        getIsGameHistoryActiveByExerciseIdAndUserId(card.exercises[questionId].id,0)
+            .then((data)=> data.data ?
+                (
+                    history.push(`/Answer/${questionId}`) 
+                ) 
+                : 
+                (
+                    createGameHistory(gameHistory)
+                        .then(history.push(`/Answer/${questionId}`))
+                ))
+              
     }
 
     const getNewCard=()=>{
@@ -40,7 +58,6 @@ export default function Questions() {
 
     useEffect(()=>{
         let dict2=new Map();
-        let summ=0;
         
         getSessionsCardByUserId(0) // fix value until login is not implemented
             .then((data)=>{
@@ -52,7 +69,6 @@ export default function Questions() {
                         dict2.set(exercise.id,data2.data);
                         setMaximumPointsByCard(maximumPointsByCard=>maximumPointsByCard+MAXIMUM_POINT_BY_QUESTION)
                         setCurrentPointsByCard(currentPointsByCard=>currentPointsByCard+data2.data)
-                        //summ+=data2.data;
 
                         setDict(dict2);
                         if(dict2.size>2 ){

@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const BASE_URL="http://localhost:8080";//"https://joker-child-spring.herokuapp.com"; //"
+
+//const BASE_URL="https://joker-child-spring.herokuapp.com";
+const BASE_URL="http://localhost:8080";
 
 const POST_CONFIG={"Content-Type": "application/json"}
 
@@ -45,10 +47,28 @@ const getIsSessionActiveByUserId = async (userId) =>{
     return await axios.get(BASE_URL+"/gameSession/isActive?userId="+userId);
 }
 
+
+const createGameHistory = async (gameHistory) =>{
+    return await axios.post(BASE_URL+"/gameHistory/",gameHistory);
+}
+
+
+const getIsGameHistoryActiveByExerciseIdAndUserId = async (exerciseId,userId) =>{
+    return await axios.get(BASE_URL+"/gameHistory/getIsGameHistoryExistByExerciseIdAndUserId?exerciseId="+exerciseId+"&userId="+userId);
+}
+
+const validateAnswer = async (userId,exerciseId,isPassed) =>{
+    return await axios.put(BASE_URL+"/gameHistory/validateExercise?exerciseId="+exerciseId+"&memberId="+userId+"&passed="+isPassed);
+}
+
+const deleteAllGameHistoryByUserId = async (userId) =>{
+    return await axios.delete(BASE_URL+"/gameHistory/allGameHistoryByUserId?userId="+userId);
+}
+
+
 const createCard = async (card) =>{
     return await axios.post(BASE_URL+"/card/",card);
 }
-
 
 
 
@@ -65,5 +85,10 @@ export {
     getXpByMemberId,
     getPlayedExercisesCountByMemberId,
     getIsSessionActiveByUserId,
+    createGameHistory,
+    getIsGameHistoryActiveByExerciseIdAndUserId,
+    validateAnswer,
+    deleteAllGameHistoryByUserId,
     createCard
+
 };
