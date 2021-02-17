@@ -3,7 +3,6 @@ import PinkInfo from "../1medium/PinkInfo"
 import PurpleButton from "../1small/PurpleButton"
 import "./getId.css"
 import {getCardByIdentificationId,createSession} from "../context/ApiCalls"
-import { CardContext} from '../context/CardContext'
 import { useHistory } from 'react-router-dom'
 
 
@@ -18,13 +17,16 @@ export default function GetId() {
             "userId":0,
             "cardId":cardData.id
         }
-        createSession(session).then((data)=>history.push("/Questions"));
+        createSession(session).then(
+            history.push("/Questions"),
+            window.location.reload() //Need to reload the navbar
+            );
         
     }
 
     const submitCode = () => {
         getCardByIdentificationId(identificationId)
-            .then(data=>data.data=="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
+            .then(data=>data.data==="" ? window.alert("Rossz azonosító kód") : onValidIdentificationId(data.data));
     }
 
     return (
